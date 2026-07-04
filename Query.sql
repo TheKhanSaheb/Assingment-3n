@@ -1,4 +1,3 @@
-
 CREATE TABLE Users (
   user_id INT PRIMARY KEY,
   full_name VARCHAR(100) NOT NULL,
@@ -6,7 +5,6 @@ CREATE TABLE Users (
   role VARCHAR(50) CHECK (role IN ('Ticket Manager', 'Football Fan')),
   phone_number VARCHAR(20)
 );
-
 
 CREATE TABLE Matches (
   match_id INT PRIMARY KEY,
@@ -23,7 +21,6 @@ CREATE TABLE Matches (
   )
 );
 
-
 CREATE TABLE Bookings (
   booking_id INT PRIMARY KEY,
   user_id INT REFERENCES Users (user_id),
@@ -38,9 +35,10 @@ CREATE TABLE Bookings (
       NULL
     )
   ),
+  total_cost DECIMAL(10, 2) CHECK (total_cost >= 0)
+);
 
-
-  INSERT INTO
+INSERT INTO
   Users (user_id, full_name, email, role, phone_number)
 VALUES
   (
@@ -132,20 +130,6 @@ VALUES
   (503, 2, 101, 'A-13', 'Confirmed', 150.00),
   (504, 2, 101, NULL, NULL, 150.00),
   (505, 3, 102, 'C-20', 'Pending', 120.00);
-
-
-  total_cost DECIMAL(10, 2) CHECK (total_cost >= 0)
-);
-
-
-
-
-
-
-
-
-
-
 
 -- Query 1
 SELECT
